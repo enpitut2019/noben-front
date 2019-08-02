@@ -5,15 +5,16 @@
       wrap
     >
     
+    <div class="notes">
     <v-flex xs12>
-      <!-- <img :src="URL"> -->
-      <v-img
-        :src="postImage"
-        class="my-3"
-        contain
-        height="200"
-      ></v-img>
+        <v-img
+          :src="postImage"
+          class="my-3"
+          contain
+          height="200"
+        ></v-img>
     </v-flex>
+    </div>
      
     </v-layout>
   </v-container>
@@ -53,3 +54,10 @@ export default {
   }
 };
 </script>
+
+<style>
+  .notes {
+    display: inline-block;
+    transform: scale(2, 2);
+  }
+</style>
