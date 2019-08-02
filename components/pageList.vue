@@ -1,12 +1,12 @@
 <template>
   <v-container>
     <v-layout
-      text-center
-      wrap
+      
+      
     >
 
     <v-flex xs12>
-    <div v-for="i in postImage.length">
+    <div class="note" v-for="i in postImage.length">
       <v-img
         :src="postImage[i-1].image_url"
         class="my-3"
@@ -63,3 +63,12 @@ export default {
   }
 };
 </script>
+
+<style>
+  .note {
+    display: inline-block;
+    height:  200px;
+    width:  200px;
+    margin: 10px;
+  }
+</style>
