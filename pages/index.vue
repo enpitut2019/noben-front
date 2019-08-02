@@ -14,7 +14,7 @@
         <!-- <vuetify-logo /> -->
       </div>
       <div>
-        <getImage/>
+        <pageList/>
       </div>
     </v-flex>
   </v-layout>
@@ -23,13 +23,13 @@
 <script>
 // import Logo from '~/components/Logo.vue'
 // import VuetifyLogo from '~/components/VuetifyLogo.vue'
-import getImage from '~/components/getImage.vue'
+import pageList from '~/components/pageList.vue'
 
 export default {
   components: {
     // Logo,
     // VuetifyLogo,
-    getImage,
+    pageList,
   }
 }
 </script>
