@@ -99,7 +99,11 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Home',
-          to: '/'
+          to: '/Home'
+        },
+        {
+          title: ' DetailPage',
+          to: '/DetailPage'
         }
       ],
       miniVariant: false,
