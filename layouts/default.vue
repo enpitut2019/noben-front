@@ -102,7 +102,7 @@ export default {
           to: '/Home'
         },
         {
-          title: ' DetailPage',
+          title: 'DetailPage',
           to: '/DetailPage'
         }
       ],
