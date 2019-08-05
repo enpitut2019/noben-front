@@ -7,9 +7,11 @@
 
     <div id="app">
         <input @change="selectedFile" type="file" name="file">
-
         <img v-show="uploadFile" :src="uploadFile" />
         <button @click="upload" type="submit">アップロード</button>
+        <div v-show="uploadFile" class="preview-item-btn" @click="remove">
+          <button class="preview-item-icon">close</button>
+        </div>
     </div>
 
 
@@ -60,6 +62,9 @@ export default {
                 this.uploadFile = e.target.result;
               };
               reader.readAsDataURL(file);
+            },
+            remove() {
+              this.uploadFile = false;
             },
         }
 
