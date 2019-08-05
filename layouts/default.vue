@@ -108,6 +108,10 @@ export default {
         {
           title: 'DetailPage',
           to: '/DetailPage'
+        },
+        {
+          title: 'UploadPage',
+          to: '/UploadPage'
         }
       ],
       miniVariant: false,
