@@ -35,15 +35,7 @@ export default {
     try {
         await axios.get("https://noben.herokuapp.com/notes")
         .then((res) => {
-          // alert(res.data[4].image_url);
           this.postImage = res.data[0].image_url;
-          // axios.get(this.URL,{crossdomain: true})
-          // .then((res) => {
-          //   this.postImage = res.data;
-          // })
-          // .catch( (e) =>{
-          //   console.log(e);
-          // });
         })
         .catch( (e) =>{
             console.log(e);
