@@ -4,28 +4,22 @@
       text-center
       wrap
     >
-    <!-- <div class="contents">
-      <label v-show="!uploadedImage" class="input-item__label"
-        >画像を選択
-        <input type="file" @change="onFileChange" />
-      </label>
-      <div class="preview-item">
-        <img
-          v-show="uploadedImage"
-          class="preview-item-file"
-          :src="uploadedImage"
-          alt=""
-        />
-        <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
-          <p class="preview-item-name">{{ img_name }}</p>
-          <e-icon class="preview-item-icon">close</e-icon>
-        </div>
-      </div>
-    </div> -->
+
     <div id="app">
+
         <input @change="selectedFile" type="file" name="file">
+        <img v-show="uploadFile" :src="uploadFile" />
         <button @click="upload" type="submit">アップロード</button>
     </div>
+
+    <!-- <div class="preview-item">
+      <img
+        v-show="uploadFile"
+        class="preview-item-file"
+        :src="uploadFile"
+        alt=""
+      />
+    </div> -->
 
     </v-layout>
   </v-container>
@@ -35,7 +29,9 @@
 import axios from 'axios';
 export default {
   data() {
-    uploadFile: null
+    return {
+      uploadFile: null  
+    }
   },
   methods: {
             selectedFile: function(e) {
@@ -43,6 +39,7 @@ export default {
                 e.preventDefault();
                 let files = e.target.files;
                 this.uploadFile = files[0];
+                this.createImage(files[0]);
             },
             upload: function() {
                 // FormData を利用して File を POST する
@@ -61,55 +58,15 @@ export default {
                     .catch(function(error) {
                         // error 処理
                     })
-            }
+            },
+            createImage(file) {
+              const reader = new FileReader();
+              reader.onload = e => {
+                this.uploadFile = e.target.result;
+              };
+              reader.readAsDataURL(file);
+            },
         }
-  // uploadFile(e) {
-  //     this.setState({
-  //       file: e.target.files[0],
-  //     }, () => {
-  //       this.sendFile();
-  //     });
-  //   },
-  //   sendFile() {
-  //     // show loading modal
-  //     this.setState({isLoading: true});
-  //     const params = new FormData();
-  //     params.append('file', this.state.file);
-  //     axios
-  //       .post(
-  //         'https://noben.herokuapp.com/notes',
-  //         params,
-  //         {
-  //           headers: {
-  //             'content-type': 'multipart/form-data',
-  //           },
-  //         }
-  //       )
-  //       .then((result) => {
-  //         this.setState({
-  //           isLoading: false
-  //         });
-  //       },
-  //       )
-  //       .catch(() => {
-  //         console.log('upload failed...');
-  //         this.setState({
-  //           isLoading: false
-  //         });
-  //       })
-  //     }
-  // async created() {
-  //   try {
-  //       await axios.get("https://noben.herokuapp.com/notes")
-  //       .then((res) => {
-  //         this.postImage = res.data[0].image_url;
-  //       })
-  //       .catch( (e) =>{
-  //           console.log(e);
-  //       });
-  //   } catch (e) {
-  //       console.log(e);
-  //   }
-  // }
+
 };
 </script>
