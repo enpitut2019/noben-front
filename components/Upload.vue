@@ -12,14 +12,7 @@
         <button @click="upload" type="submit">アップロード</button>
     </div>
 
-    <!-- <div class="preview-item">
-      <img
-        v-show="uploadFile"
-        class="preview-item-file"
-        :src="uploadFile"
-        alt=""
-      />
-    </div> -->
+
 
     </v-layout>
   </v-container>
