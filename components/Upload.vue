@@ -6,8 +6,8 @@
     >
 
     <div id="app">
-
         <input @change="selectedFile" type="file" name="file">
+
         <img v-show="uploadFile" :src="uploadFile" />
         <button @click="upload" type="submit">アップロード</button>
     </div>
@@ -30,7 +30,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      uploadFile: null  
+      uploadFile: null
     }
   },
   methods: {
@@ -44,14 +44,16 @@ export default {
             upload: function() {
                 // FormData を利用して File を POST する
                 let formData = new FormData();
-                formData.append('yourFileKey', this.uploadFile);
+                formData.append('note[subject_name]', "hogee");
+                formData.append('note[pages_attributes][0][image]', this.uploadFile);
+                //formData.append('note[pages_attributes][0][order]', "0");
                 let config = {
                     headers: {
                         'content-type': 'multipart/form-data'
                     }
                 };
                 axios
-                    .post('yourUploadUrl', formData, config)
+                    .post('https://noben.herokuapp.com/notes', formData, config)
                     .then(function(response) {
                         // response 処理
                     })
