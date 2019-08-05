@@ -4,16 +4,28 @@
       text-center
       wrap
     >
-
-    <v-flex xs12>
-      <!-- <img :src="URL"> -->
-      <v-img
-        :src="postImage"
-        class="my-3"
-        contain
-        height="200"
-      ></v-img>
-    </v-flex>
+    <!-- <div class="contents">
+      <label v-show="!uploadedImage" class="input-item__label"
+        >画像を選択
+        <input type="file" @change="onFileChange" />
+      </label>
+      <div class="preview-item">
+        <img
+          v-show="uploadedImage"
+          class="preview-item-file"
+          :src="uploadedImage"
+          alt=""
+        />
+        <div v-show="uploadedImage" class="preview-item-btn" @click="remove">
+          <p class="preview-item-name">{{ img_name }}</p>
+          <e-icon class="preview-item-icon">close</e-icon>
+        </div>
+      </div>
+    </div> -->
+    <div id="app">
+        <input @change="selectedFile" type="file" name="file">
+        <button @click="upload" type="submit">アップロード</button>
+    </div>
 
     </v-layout>
   </v-container>
@@ -23,33 +35,81 @@
 import axios from 'axios';
 export default {
   data() {
-    return {
-      postImage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
-      URL: "",
-    };
+    uploadFile: null
   },
   methods: {
-  },
-  async created() {
-    try {
-        await axios.get("https://noben.herokuapp.com/notes")
-        .then((res) => {
-          // alert(res.data[4].image_url);
-          this.postImage = res.data[0].image_url;
-          // axios.get(this.URL,{crossdomain: true})
-          // .then((res) => {
-          //   this.postImage = res.data;
-          // })
-          // .catch( (e) =>{
-          //   console.log(e);
-          // });
-        })
-        .catch( (e) =>{
-            console.log(e);
-        });
-    } catch (e) {
-        console.log(e);
-    }
-  }
+            selectedFile: function(e) {
+                // 選択された File の情報を保存しておく
+                e.preventDefault();
+                let files = e.target.files;
+                this.uploadFile = files[0];
+            },
+            upload: function() {
+                // FormData を利用して File を POST する
+                let formData = new FormData();
+                formData.append('yourFileKey', this.uploadFile);
+                let config = {
+                    headers: {
+                        'content-type': 'multipart/form-data'
+                    }
+                };
+                axios
+                    .post('yourUploadUrl', formData, config)
+                    .then(function(response) {
+                        // response 処理
+                    })
+                    .catch(function(error) {
+                        // error 処理
+                    })
+            }
+        }
+  // uploadFile(e) {
+  //     this.setState({
+  //       file: e.target.files[0],
+  //     }, () => {
+  //       this.sendFile();
+  //     });
+  //   },
+  //   sendFile() {
+  //     // show loading modal
+  //     this.setState({isLoading: true});
+  //     const params = new FormData();
+  //     params.append('file', this.state.file);
+  //     axios
+  //       .post(
+  //         'https://noben.herokuapp.com/notes',
+  //         params,
+  //         {
+  //           headers: {
+  //             'content-type': 'multipart/form-data',
+  //           },
+  //         }
+  //       )
+  //       .then((result) => {
+  //         this.setState({
+  //           isLoading: false
+  //         });
+  //       },
+  //       )
+  //       .catch(() => {
+  //         console.log('upload failed...');
+  //         this.setState({
+  //           isLoading: false
+  //         });
+  //       })
+  //     }
+  // async created() {
+  //   try {
+  //       await axios.get("https://noben.herokuapp.com/notes")
+  //       .then((res) => {
+  //         this.postImage = res.data[0].image_url;
+  //       })
+  //       .catch( (e) =>{
+  //           console.log(e);
+  //       });
+  //   } catch (e) {
+  //       console.log(e);
+  //   }
+  // }
 };
 </script>
