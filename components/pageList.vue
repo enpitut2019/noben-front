@@ -6,6 +6,7 @@
     >
 
     <v-flex xs12>
+    <!-- <div v-for='(page, i) in pages' :key='postImage.id'> -->
     <div class="note" v-for="i in postImage.length">
       <a v-on:click="loadDetail(id)">
         <v-img
