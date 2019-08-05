@@ -8,9 +8,6 @@
 <script>
     import axios from 'axios';
     export default {
-        // メソッドの実行
-        // created() {
-        // },
         // メソッドで使う&テンプレート内で使う変数を定義
         data() {
             return {
