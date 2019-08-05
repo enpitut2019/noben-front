@@ -97,6 +97,10 @@ export default {
       fixed: false,
       items: [
         {
+          title: 'index',
+          to: '/'
+        },
+        {
           icon: 'mdi-apps',
           title: 'Home',
           to: '/Home'
