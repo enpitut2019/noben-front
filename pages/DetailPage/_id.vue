@@ -1,28 +1,33 @@
 <template>
   <v-container>
-    <div v-for='page in postImage.pages' v-bind:key='page.id'>
+    <div class="image" v-for='page in postImage.pages' v-bind:key='page.id'>
       <v-img
         :src="page.image"
-        class="my-3"
-        contain
-        height="200"
       ></v-img>
+      <br>
     </div>
 
     <!-- コメントを一覧表示 -->
     <div v-if="display">
+      <ul>
       <div v-for='comment in postImage.comments' v-bind:key='comment.id'>
-        {{ comment.content }}
+        <li>
+          {{ comment.content }} @ {{ comment.name }}
+        </li>
         <!-- <div v-if="comment.length != 0" >
         </div> -->
       </div>
+      </ul>
     </div>
 
     <!--  -->
     <div class="cmt">
+        <input id="name" v-model="name" type="text" name="name" placeholder="ユーザーネーム"><br>
         <input v-model="content" type="text" name="content" placeholder="ノートにコメントをしよう！"><button class="btn"
          v-on:click="postComment">コメント</button>
     </div>
+    <br>
+    <br>
   </v-container>
 </template>
 
@@ -44,11 +49,11 @@ export default {
   methods: {
     async postComment(){
       var comment = {
-          //'title': this.title,
+          'name': this.name,
           'content': this.content
       };
       await axios.post('https://noben.herokuapp.com/notes/' + this.$route.params.id + '/comments', comment).then(res => {
-          //console.log(res.data.title);
+          console.log(res.data.name);
           console.log(res.data.content);
       });
       window.location.reload();
@@ -111,5 +116,19 @@ export default {
         width: 100%;
         margin: auto;
         position: absolute;
+    }
+
+    .box img {
+      width: 100%
+    }
+
+    .image v-img {
+      text-align: center;
+      width: 100%;
+    }
+
+    #name {
+      width: 300px;
+      margin-bottom: 5px;
     }
 </style>

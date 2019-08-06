@@ -4,7 +4,7 @@
 
     <div id="app">
       <input type="file" @change="onFileChanged">
-      <button @click="onUpload">Upload</button>
+      <button @click="onUpload">アップロード</button><br>
       <img v-show="sFile" :src="sFile" />
       <!-- <form @submit.prevent="upload" enctype="multipart/form-data">
         <input @change="selectedFile" type="file" name="file" ref="file">
@@ -90,3 +90,28 @@ export default {
 
 };
 </script>
+
+<style>
+  button {
+        color: black;
+        background-color: white;
+        /*margin: auto;
+        position: absolute;*/
+        border:none;
+        border-radius:10px;
+        box-shadow: none;
+        padding: 2px 8px;
+    }
+
+    input, button:focus {
+        outline: none;
+    }
+
+    #app {
+      width: 100%;
+    }
+
+    #app img {
+      width: 80%;
+    }
+</style>
