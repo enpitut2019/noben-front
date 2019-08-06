@@ -10,10 +10,8 @@
 					placeholder = "線形代数"
 					required
 					></v-text-field>
-        <v-icon>mdi-anchor</v-icon>
 				<v-text-field
 					v-model = "tags"
-					prepend-icon="close"
 					label = "タグ"
 					placeholder = "3回目, 課題"
 					required
@@ -76,6 +74,9 @@ export default {
       }
       formData.append('tags', this.tags)
       axios.post('https://noben.herokuapp.com/notes', formData)
+           .then((res) => {
+             this.$router.push({ name: 'DetailPage-id', params: { id: res.data.id }})
+           })
       this.images = []
     },
     createImage(file) {

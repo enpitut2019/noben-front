@@ -50,7 +50,8 @@ export default {
     return {
       postImage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
       content: "",
-      display: false
+      display: false,
+      name: ""
     };
   },
   methods: {
