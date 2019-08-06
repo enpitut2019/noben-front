@@ -7,6 +7,12 @@
       <br>
     </div>
 
+    <h2>このノートについているタグ</h2>
+    <hr>
+    <div class="tag" v-for='(tag, i) in postImage.tags'>
+      {{tag.name}}
+    </div><br><br>
+
     <!-- コメントを一覧表示 -->
     <h2>コメント欄</h2>
     <hr>
@@ -126,6 +132,18 @@ export default {
     .image v-img {
       text-align: center;
       width: 100%;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 3px;
+      background-color: white;
+      color: black;
+      border:none;
+      border-radius:10px;
+      box-shadow: none;
+      padding: 2px 8px;
+      position: center;
     }
 
     #name {
