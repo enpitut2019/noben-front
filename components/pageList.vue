@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     loadDetail(id){
-      window.location.href = window.location.href + "DetailPage/" + id
+      window.location.href = window.location.protocol + "//" + window.location.host + "/DetailPage/" + id;
     }
   },
   async created() {

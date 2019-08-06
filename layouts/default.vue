@@ -98,14 +98,15 @@ export default {
   },
   methods: {
     MoveForTop(){
-      window.location.href = window.location.protocol + "/";
+      // alert(window.location.protocol +"\n"+window.location.host+"\n"+window.location.hostname)
+      window.location.href = window.location.protocol + "//" + window.location.host;
     },
     MoveForUpload(){
-      window.location.href = window.location.protocol + "/UploadPage";
+      window.location.href = window.location.protocol + "//" + window.location.host + "/UploadPage";
     },
     MoveForSearch(){
       if(this.content != "" && this.content.indexOf(' ') ===  -1 && this.content.indexOf('　') === -1){
-        window.location.href = window.location.protocol + "/SearchPage/" + this.content;
+        window.location.href = window.location.protocol + "//" + window.location.host + "/SearchPage/" + this.content;
       }else{
         alert("タグが不正な値です")
       }
