@@ -4,17 +4,19 @@
       <h2>テストページ</h2>
     </div>
     <div>
-        <Comment/>
+      <SearchForm/>
     </div>
   </div>
 </template>
 
 <script>
 import Comment from '~/components/Comment.vue'
+import SearchForm from '~/components/SearchForm.vue'
 
 export default {
   components: {
     Comment,
+    SearchForm
   }
 }
 </script>
