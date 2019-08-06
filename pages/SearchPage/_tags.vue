@@ -3,7 +3,7 @@
         <v-layout>
             <v-flex xs12>
                 <div v-if="display">
-                    <div v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
+                    <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
                         <div v-if="thumbnail.pages.length != 0" >
                             <a v-on:click="loadDetail(thumbnail.id)">
                                 <v-img
@@ -55,6 +55,7 @@ export default {
 <style>
   .note {
     display: inline-block;
+    vertical-align: top;
     height:  200px;
     width:  200px;
     margin: 10px;
