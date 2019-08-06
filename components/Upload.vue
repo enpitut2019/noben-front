@@ -31,10 +31,10 @@
       <div v-for="(image,index) in images">
         <h2>{{image.name}}</h2>
         <img v-show="image" :src="image.thumbnail" />
-        <h2>{{index}}</h2>
-        <h2>{{images[index].name}}</h2>
-        <div v-show="images" class="preview-item-btn" @click="remove('index')">
-          <button class="preview-item-icon">close</button>
+        <!-- <h2>{{index}}</h2>
+        <h2>{{images[index].name}}</h2> -->
+      <div v-show="images" class="preview-item-btn" @click="remove(`${index}`)">
+          <button class="preview-item-icon">delete</button>
         </div>
       </div>
     </div>
@@ -88,6 +88,7 @@ export default {
     },
     remove(index) {
       this.images.splice(Number(index), 1);
+      console.log(index);
     },
   }
 
