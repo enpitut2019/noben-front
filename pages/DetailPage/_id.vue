@@ -1,16 +1,41 @@
 <template>
   <v-container>
-    <div class="image" v-for='page in postImage.pages' v-bind:key='page.id'>
+    <h1><center>{{postImage.subject_name}}</center></h1><br>
+    <!--div class="image" v-for='page in postImage.pages' v-bind:key='page.id'>
       <v-img
         :src="page.image"
       ></v-img>
       <br>
+    </div-->
+
+    <div class="pgft">
+      <center>
+      <button class="btn" v-on:click="beforePage">前のページ</button>
+      <b>{{nowPageNum + 1}} / {{maxPageNum}}</b>
+      <button class="btn" v-on:click="nextPage">次のページ</button>
+      </center>
+    </div>
+
+    <div class="image">
+      <br>
+      <v-img 
+        :src='nowPage.image'
+      ></v-img>
+      <br>
+    </div>
+
+    <div class="pgft">
+      <center>
+      <button class="btn" v-on:click="beforePage">前のページ</button>
+      <b>{{nowPageNum + 1}} / {{maxPageNum}}</b>
+      <button class="btn" v-on:click="nextPage">次のページ</button>
+      </center>
     </div>
 
     <h2>このノートについているタグ</h2>
     <hr>
-    <div class="tag" v-for='(tag, i) in postImage.tags'>
-      {{tag.name}}
+    <div class="tag" v-for='tag in postImage.tags'>
+      <button v-on:click="searchUrl(tag.name)">{{tag.name}}</button>
     </div><br><br>
 
     <!-- コメントを一覧表示 -->
@@ -50,7 +75,10 @@ export default {
     return {
       postImage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
       content: "",
-      display: false
+      display: false,
+      nowPage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
+      nowPageNum: 0,
+      maxPageNum: 0
     };
   },
   methods: {
@@ -64,6 +92,25 @@ export default {
           console.log(res.data.content);
       });
       window.location.reload();
+    },
+    searchUrl(tag){
+        //if(this.content != "" && this.content.indexOf(' ') ===  -1 && this.content.indexOf('　') === -1){
+            window.location.href = window.location.protocol + "/SearchPage/" + tag;
+        //}else{
+          //  alert("タグが不正な値です")
+        //}
+    },
+    beforePage(){
+      if (this.nowPageNum - 1 >= 0) {
+        this.nowPageNum = this.nowPageNum - 1;
+      }
+      this.nowPage = this.postImage.pages[this.nowPageNum];
+    },
+    nextPage(){
+      if (this.nowPageNum + 1 < this.maxPageNum) {
+        this.nowPageNum = this.nowPageNum + 1;
+      }
+      this.nowPage = this.postImage.pages[this.nowPageNum];
     }
   },
   async created() {
@@ -75,6 +122,8 @@ export default {
           // alert(res.data.pages[0].image)
           this.postImage = res.data;
           this.display = true;
+          this.nowPage = this.postImage.pages[this.nowPageNum];
+          this.maxPageNum = this.postImage.pages.length;
         })
         .catch( (e) =>{
           console.log(e);
@@ -88,6 +137,10 @@ export default {
 
 
 <style>
+    h1 {
+      font-size: 300%;
+    }
+
     .cmt input {
         color: black;
         background-color: white;
@@ -129,6 +182,11 @@ export default {
       width: 100%
     }
 
+    .image {
+      margin: auto;
+      width: 60%;
+    }
+
     .image v-img {
       text-align: center;
       width: 100%;
@@ -144,6 +202,11 @@ export default {
       box-shadow: none;
       padding: 2px 8px;
       position: center;
+    }
+
+    .pgft .btn {
+      color: white;
+      background-color: gray;
     }
 
     #name {
