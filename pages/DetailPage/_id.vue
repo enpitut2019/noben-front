@@ -8,9 +8,14 @@
     </div>
 
     <!-- コメントを一覧表示 -->
+    <h2>コメント欄</h2>
+    <hr>
     <div v-if="display">
       <div v-for='(comment, i) in postImage.comments' v-bind:key='comment.id'>
-          {{i+1}}. {{ comment.user_name }} : {{ comment.content }}
+          {{i+1}}. <b>{{ comment.user_name }}</b>
+          <br>
+          {{ comment.content }}
+          <hr color="gray" size="1px;">
         <!-- <div v-if="comment.length != 0" >
         </div> -->
       </div>
@@ -125,6 +130,7 @@ export default {
 
     #name {
       width: 300px;
+      margin-top: 5px;
       margin-bottom: 5px;
     }
 </style>

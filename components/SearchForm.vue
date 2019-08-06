@@ -1,9 +1,12 @@
 <template>
   <v-container>
-    <div class="cmt">
+      　　　
+    <div class="tagSearch">
         <input v-model="content" type="text" name="content" placeholder="タグを入力" ><button class="btn"
          v-on:click="Search"><b>検索</b></button>
     </div>
+    <br>
+    
   </v-container>
 </template>
 
@@ -24,6 +27,7 @@ export default {
             alert("タグが不正な値です")
         }
     }
+
   },
   async created() {
   }
@@ -32,7 +36,7 @@ export default {
 
 
 <style>
-    textarea, input {
+    .tagSearch input {
         color: black;
         background-color: white;
         width: 40%;
@@ -44,7 +48,7 @@ export default {
         padding: 2px 8px;
     }
 
-    input, button:focus {
+    .tagSearch input, button:focus {
         outline: none;
     }
 
@@ -63,7 +67,7 @@ export default {
         position: center;
     }
 
-    .cmt {
+    .tagSearch {
         width: 100%;
         margin: auto;
         position: absolute;
