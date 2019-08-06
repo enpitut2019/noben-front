@@ -7,7 +7,7 @@
 
     <v-flex xs12>
     <div v-if="display">
-      <div v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
+      <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
       <!-- <div class="note" v-for="i in postImage.length"> -->
         <!-- {{thumbnail.pages.length}} -->
         <div v-if="thumbnail.pages.length != 0" >
@@ -69,5 +69,9 @@ export default {
     height:  200px;
     width:  200px;
     margin: 10px;
+  }
+
+  .note img {
+    width: 50%;
   }
 </style>

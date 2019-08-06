@@ -9,15 +9,11 @@
 
     <!-- コメントを一覧表示 -->
     <div v-if="display">
-      <ul>
-      <div v-for='comment in postImage.comments' v-bind:key='comment.id'>
-        <li>
-          {{ comment.content }} @ {{ comment.name }}
-        </li>
+      <div v-for='(comment, i) in postImage.comments' v-bind:key='comment.id'>
+          {{i+1}}. {{ comment.user_name }} : {{ comment.content }}
         <!-- <div v-if="comment.length != 0" >
         </div> -->
       </div>
-      </ul>
     </div>
 
     <!--  -->
@@ -49,7 +45,7 @@ export default {
   methods: {
     async postComment(){
       var comment = {
-          'name': this.name,
+          'user_name': this.name,
           'content': this.content
       };
       await axios.post('https://noben.herokuapp.com/notes/' + this.$route.params.id + '/comments', comment).then(res => {
@@ -81,7 +77,7 @@ export default {
 
 
 <style>
-    textarea, input {
+    .cmt input {
         color: black;
         background-color: white;
         width: 80%;
@@ -93,7 +89,7 @@ export default {
         padding: 2px 8px;
     }
 
-    input, button:focus {
+    .cmt input, button:focus {
         outline: none;
     }
 
