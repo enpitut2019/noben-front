@@ -78,7 +78,8 @@ export default {
       display: false,
       nowPage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
       nowPageNum: 0,
-      maxPageNum: 0
+      maxPageNum: 0,
+      name: ""
     };
   },
   methods: {

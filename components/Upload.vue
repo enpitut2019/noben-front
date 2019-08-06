@@ -10,10 +10,8 @@
 					placeholder = "線形代数"
 					required
 					></v-text-field>
-        <v-icon>mdi-anchor</v-icon>
 				<v-text-field
 					v-model = "tags"
-					prepend-icon="close"
 					label = "タグ"
 					placeholder = "3回目, 課題"
 					required
@@ -26,7 +24,9 @@
 			</v-form>
       <div>
         <input type="file" @change="onFileChanged" multiple>
-        <button @click="onUpload">Upload</button>
+        <!-- <div v-if="images!==null"> -->
+        <button @click="onUpload" v-if="images.length!=0">Upload</button>
+      <!-- </div> -->
       </div>
       <div v-for="(image,index) in images">
         <h2>{{image.name}}</h2>
@@ -65,6 +65,7 @@ export default {
       }
     },
     onUpload() {
+      console.log(this.images)
       const formData = new FormData()
       formData.append('note[subject_name]', this.subjectName)
       for (  var i = 0;  i < this.images.length;  i++  ) {
@@ -73,6 +74,9 @@ export default {
       }
       formData.append('tags', this.tags)
       axios.post('https://noben.herokuapp.com/notes', formData)
+           .then((res) => {
+             this.$router.push({ name: 'DetailPage-id', params: { id: res.data.id }})
+           })
       this.images = []
     },
     createImage(file) {
