@@ -7,6 +7,7 @@
       fixed
       app
     >
+      <!-- 一番左のリンクベタベタ貼ってるデバッグ用バー -->
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -21,9 +22,11 @@
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
+          
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    
     <v-app-bar
       :clipped-left="clipped"
       fixed
@@ -62,6 +65,7 @@
         <nuxt />
       </v-container>
     </v-content>
+  
     <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
@@ -75,7 +79,7 @@
               mdi-repeat
             </v-icon>
           </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+          <v-list-item-title>Switch drawer</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -83,7 +87,7 @@
       :fixed="fixed"
       app
     >
-      <span>&copy; 2019/8/2</span>
+      <span>&copy; 2019/8/7</span>
     </v-footer>
   </v-app>
 </template>
