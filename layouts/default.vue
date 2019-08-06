@@ -1,13 +1,12 @@
 <template>
   <v-app dark>
-
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
       app
-    >
+      >
       <!-- 一番左のリンクベタベタ貼ってるデバッグ用バー -->
       <v-list>
         <v-list-item
@@ -16,103 +15,77 @@
           :to="item.to"
           router
           exact
-        >
+          >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
-          
+
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    
-    <v-app-bar
-      
-      fixed
-      app
-    >
-      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn> -->
 
-      <!-- <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn> -->
-
-      <!-- <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn> -->
-
-
-      <!-- <v-toolbar-title v-text="title" /> -->
-
-      <!-- スペース生成(これ以降は右詰め) -->
-      <!-- <v-spacer /> -->
-      
-      <!-- <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn> -->
-
-      <button v-on:click="MoveForTop()">
+    <v-app-bar fixed>
+      <v-btn depressed @click="MoveForTop">
         NoBen
-      </button>
+      </v-btn>
 
-      <div class="center">
-        <SearchForm/>
-      </div>
+      <v-spacer></v-spacer>
 
-      <v-spacer />
+      <v-text-field
+        v-model="content"
+        hide-details
+        >
+      </v-text-field>
+      <v-btn
+        icon >
+        <v-icon
+          @click="MoveForSearch">
+          mdi-magnify</v-icon>
+      </v-btn>
 
-      <button class="btn-square-soft" v-on:click="MoveForUpload()">ノートを投稿</button>
+      <v-spacer></v-spacer>
 
+      <v-btn
+        @click="MoveForUpload"
+        icon>
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
     </v-app-bar>
 
-    <v-content>
+    <v-content class="mt-12">
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-  
+
     <!-- <v-navigation-drawer
       v-model="rightDrawer"
       :right="right"
       temporary
       fixed
-    >
+      >
       <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer</v-list-item-title>
-        </v-list-item>
+      <v-list-item @click.native="right = !right">
+      <v-list-item-action>
+      <v-icon light>
+      mdi-repeat
+      </v-icon>
+      </v-list-item-action>
+      <v-list-item-title>Switch drawer</v-list-item-title>
+      </v-list-item>
       </v-list>
-    </v-navigation-drawer> -->
+      </v-navigation-drawer> -->
 
-    <!-- フッター -->
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; 2019/8/7</span>
-    </v-footer>
+      <!-- フッター -->
+      <v-footer
+        :fixed="fixed"
+        app
+        >
+        <span>&copy; 2019/8/7</span>
+      </v-footer>
   </v-app>
 </template>
 
@@ -129,10 +102,18 @@ export default {
     },
     MoveForUpload(){
       window.location.href = window.location.protocol + "/UploadPage";
-    }
+    },
+    MoveForSearch(){
+      if(this.content != "" && this.content.indexOf(' ') ===  -1 && this.content.indexOf('　') === -1){
+        window.location.href = window.location.protocol + "/SearchPage/" + this.content;
+      }else{
+        alert("タグが不正な値です")
+      }
+    },
   },
   data () {
     return {
+      content: '',
       clipped: false,
       drawer: false,
       fixed: false,
