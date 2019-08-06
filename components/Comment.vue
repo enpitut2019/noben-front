@@ -1,23 +1,13 @@
 <template>
-    <div>
-        <div>
-            <!--h4>記事投稿</h4-->
-            <div>
-                <!--input v-model="title" type="text" name="title" placeholder="タイトル"-->
-                <textarea v-model="content" class="form-control" rows="4" placeholder=""></textarea>
-                <!--p>{{ title }}</p-->
-                <p>{{ content }}</p>
-                <button v-on:click="postComment">投稿</button>
-            </div>
-        </div>
+    <div class="cmt">
+        <input v-model="content" type="text" name="content" placeholder="ノートにコメントをしよう！"><button class="btn"
+         v-on:click="postComment">コメント</button>
     </div>
 </template>
 
 <script>
+    import axios from 'axios';
     export default {
-        // メソッドの実行
-        // created() {
-        // },
         // メソッドで使う&テンプレート内で使う変数を定義
         data() {
             return {
@@ -32,8 +22,8 @@
                     //'title': this.title,
                     'content': this.content
                 };
-                //var id = 1;
-                axios.post('http://httpbin.org/post', comment).then(res => {
+                var ID = 1;
+                axios.post('https://noben.herokuapp.com/notes/' + ID + '/comments', comment).then(res => {
                     //console.log(res.data.title);
                     console.log(res.data.content);
                 });
@@ -42,3 +32,42 @@
         }
     }
 </script>
+
+<style>
+    textarea, input {
+        color: black;
+        background-color: white;
+        width: 80%;
+        /*margin: auto;
+        position: absolute;*/
+        border:none;
+        border-radius:10px;
+        box-shadow: none;
+        padding: 2px 8px;
+    }
+
+    input, button:focus {
+        outline: none;
+    }
+
+    .btn {
+        margin: 0 0 0 auto;
+        margin-left: 3px;
+        background-color: white;
+        color: black;
+        /*width: 20%;*/
+        /*margin: auto;*/
+        /*position: absolute;*/
+        border:none;
+        border-radius:10px;
+        box-shadow: none;
+        padding: 2px 8px;
+        position: center;
+    }
+
+    .cmt {
+        width: 100%;
+        margin: auto;
+        position: absolute;
+    }
+</style>

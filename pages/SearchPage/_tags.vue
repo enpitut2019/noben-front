@@ -3,7 +3,6 @@
     <div v-for='page in postImage.pages' v-bind:key='page.id'>
       <v-img
         :src="page.image"
-        class="my-3"
         contain
         height="200"
       ></v-img>
