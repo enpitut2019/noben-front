@@ -1,7 +1,7 @@
 <template>
     <div class="cmt">
         <input v-model="content" type="text" name="content" placeholder="ノートにコメントをしよう！"><button class="btn"
-         v-on:click="postComment">コメント</button>
+         v-on:click="postComment"><b>コメント</b></button>
     </div>
 </template>
 
