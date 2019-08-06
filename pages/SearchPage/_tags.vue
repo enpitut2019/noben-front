@@ -19,8 +19,8 @@
 
     <!--  -->
     <div class="cmt">
-        <input v-model="content" type="text" name="content" placeholder="ノートにコメントをしよう！"><button class="btn"
-         v-on:click="postComment">コメント</button>
+        <input v-model="content" type="text" name="content" placeholder="タグを入力しよう！"><button class="btn"
+         v-on:click="postComment">検索</button>
     </div>
   </v-container>
 </template>
@@ -35,27 +35,14 @@ export default {
   },
   data() {
     return {
-      postImage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
-      content: "",
-      display: false
+      content: ""
     };
   },
   methods: {
-    async postComment(){
-      var comment = {
-          //'title': this.title,
-          'content': this.content
-      };
-      await axios.post('https://noben.herokuapp.com/notes/' + this.$route.params.id + '/comments', comment).then(res => {
-          //console.log(res.data.title);
-          console.log(res.data.content);
-      });
-      window.location.reload();
-    }
+    
   },
   async created() {
     // alert(this.$route.params.id)
-    // this.id = this.$route.params.id
     try {
         await axios.get("https://noben.herokuapp.com/notes/" + this.$route.params.id)
         .then((res) => {
