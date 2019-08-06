@@ -3,27 +3,26 @@
     <v-layout>
 
     <div>
-    <v-flex xs12>
-    <div v-if="display">
-      <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
-      <!-- <div class="note" v-for="i in postImage.length"> -->
-        <!-- {{thumbnail.pages.length}} -->
-        <v-card>
-        <div v-if="thumbnail.pages.length != 0" >
-          
-          <a v-on:click="loadDetail(thumbnail.id)">
-            <v-img
-              :src="thumbnail.pages[0].image"
-              class="my-3"
-              contain
-              height="200"
-            ></v-img>
-          </a>
+      <v-flex xs12>
+        <div v-if="display">
+          <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
+            <div class="oneCard" v-if="thumbnail.pages.length != 0" >
+              <v-card>
+                <a v-on:click="loadDetail(thumbnail.id)">
+                  <v-img
+                    :src="thumbnail.pages[0].image"
+                    contain
+                    height="200"
+                  ></v-img>
+                </a>
+              </v-card>
+            </div>
+          </div>
         </div>
-        </v-card>
-      </div>
-    </div>
-    </v-flex>
+        <div class="loader" v-else>
+          
+        </div>
+      </v-flex>
     </div>
 
 
@@ -68,6 +67,8 @@ export default {
   .note {
     display: inline-block;
     vertical-align: top; 
+  }
+  .oneCard{
     height:  200px;
     width:  200px;
     margin: 10px;
@@ -75,5 +76,71 @@ export default {
 
   .note img {
     width: 50%;
+  }
+
+
+
+  .loader {
+    font-size: 10px;
+    margin: 50px auto;
+    text-indent: -9999em;
+    width: 11em;
+    height: 11em;
+    border-radius: 50%;
+    background: #ffffff;
+    background: -moz-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: -webkit-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: -o-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: -ms-linear-gradient(left, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    background: linear-gradient(to right, #ffffff 10%, rgba(255,255,255, 0) 42%);
+    position: relative;
+    -webkit-animation: load3 1.4s infinite linear;
+    animation: load3 1.4s infinite linear;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+  .loader:before {
+    width: 50%;
+    height: 50%;
+    background: #ffffff;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+  }
+  .loader:after {
+    background: #303030;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  @-webkit-keyframes load3 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes load3 {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
   }
 </style>
