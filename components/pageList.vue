@@ -12,7 +12,7 @@
         <!-- {{thumbnail.pages.length}} -->
         <div v-if="thumbnail.pages.length != 0" >
           
-          <a v-on:click="loadDetail(id)">
+          <a v-on:click="loadDetail(thumbnail.id)">
             <v-img
               :src="thumbnail.pages[0].image"
               class="my-3"
@@ -37,7 +37,6 @@ export default {
     return {
       postImage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
       URL: "",
-      id: 1,
       display: false,
     };
   },
