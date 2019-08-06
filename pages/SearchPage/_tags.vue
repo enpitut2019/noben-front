@@ -6,6 +6,7 @@
                     <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
                         <div class="oneCard" v-if="thumbnail.pages.length != 0" >
                              <v-card>
+                                <v-card-text>{{ thumbnail.subject_name }}</v-card-text>
                                 <a v-on:click="loadDetail(thumbnail.id)">
                                     <v-img
                                         :src="thumbnail.pages[0].image"
@@ -64,7 +65,7 @@ export default {
   .oneCard{
     height:  200px;
     width:  200px;
-    margin: 10px;
+    margin: 35px 10px;
   }
 
 
