@@ -55,6 +55,7 @@
         <v-icon>mdi-minus</v-icon>
       </v-btn> -->
 
+
       <!-- <v-toolbar-title v-text="title" /> -->
 
       <!-- スペース生成(これ以降は右詰め) -->
@@ -69,8 +70,10 @@
       <div class="center">
         <SearchForm/>
       </div>
-      
-      
+
+      <v-spacer />
+
+      <button class="btn-square-soft" v-on:click="MoveForUpload()">ノートを投稿</button>      
 
     </v-app-bar>
 
@@ -115,6 +118,11 @@ export default {
   components: {
     SearchForm
   },
+  methods: {
+    MoveForUpload(){
+      window.location.href = window.location.protocol + "/UploadPage"
+    }
+  },
   data () {
     return {
       clipped: false,
@@ -152,5 +160,30 @@ export default {
 <style>
   .center{
     text-align: center;
+  }
+
+  .btn-square-soft {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: #302f2f;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    background: linear-gradient(#c4c0c2 0%, #8d8a8a 100%);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.66);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+  }
+
+  .btn-square-soft:active {
+    /*押したとき*/
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);/*沈むように*/
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
+    background-image: linear-gradient(#dad6d7 0%, #949191 100%);/*グラデーションを明るく*/
   }
 </style>
