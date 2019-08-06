@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <!--  -->
     <div class="cmt">
         <input v-model="content" type="text" name="content" placeholder="タグを入力" ><button class="btn"
          v-on:click="Search"><b>検索</b></button>
