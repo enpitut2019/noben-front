@@ -67,13 +67,18 @@
       >
         <v-icon>mdi-menu</v-icon>
       </v-btn> -->
+
+      <button v-on:click="MoveForTop()">
+        NoBen
+      </button>
+
       <div class="center">
         <SearchForm/>
       </div>
 
       <v-spacer />
 
-      <button class="btn-square-soft" v-on:click="MoveForUpload()">ノートを投稿</button>      
+      <button class="btn-square-soft" v-on:click="MoveForUpload()">ノートを投稿</button>
 
     </v-app-bar>
 
@@ -119,8 +124,11 @@ export default {
     SearchForm
   },
   methods: {
+    MoveForTop(){
+      window.location.href = window.location.protocol + "/";
+    },
     MoveForUpload(){
-      window.location.href = window.location.protocol + "/UploadPage"
+      window.location.href = window.location.protocol + "/UploadPage";
     }
   },
   data () {
