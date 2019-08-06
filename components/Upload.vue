@@ -18,11 +18,11 @@
 					placeholder = "3回目, 課題"
 					required
 					></v-text-field>
-				<v-file-input
+				<!-- <v-file-input
 				  label="ノート画像"
 			    @change = "onFileChanged"
           multiple
-					></v-file-input>
+					></v-file-input> -->
 			</v-form>
       <div>
         <input type="file" @change="onFileChanged" multiple>
@@ -31,6 +31,11 @@
       <div v-for="(image,index) in images">
         <h2>{{image.name}}</h2>
         <img v-show="image" :src="image.thumbnail" />
+        <h2>{{index}}</h2>
+        <h2>{{images[index].name}}</h2>
+        <div v-show="images" class="preview-item-btn" @click="remove('index')">
+          <button class="preview-item-icon">close</button>
+        </div>
       </div>
     </div>
 
@@ -54,6 +59,7 @@ export default {
   methods: {
     onFileChanged(event) {
       let files = event.target.files;
+
       for(var i = 0;i < files.length;i++) {
         this.createImage(files[i])
       }
@@ -67,6 +73,7 @@ export default {
       }
       formData.append('tags', this.tags)
       axios.post('https://noben.herokuapp.com/notes', formData)
+      this.images = []
     },
     createImage(file) {
       const reader = new FileReader();
@@ -79,9 +86,9 @@ export default {
       };
       reader.readAsDataURL(file);
     },
-    // remove(index) {
-    //   this.images[index] = null;
-    // },
+    remove(index) {
+      this.images.splice(Number(index), 1);
+    },
   }
 
 };
