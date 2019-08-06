@@ -5,13 +5,15 @@
                 <div v-if="display">
                     <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
                         <div v-if="thumbnail.pages.length != 0" >
-                            <a v-on:click="loadDetail(thumbnail.id)">
-                                <v-img
-                                    :src="thumbnail.pages[0].image"
-                                    contain
-                                    height="200"
-                                ></v-img>
-                            </a>
+                             <v-card>
+                                <a v-on:click="loadDetail(thumbnail.id)">
+                                    <v-img
+                                        :src="thumbnail.pages[0].image"
+                                        contain
+                                        height="200"
+                                    ></v-img>
+                                </a>
+                            </v-card>
                         </div>
                     </div>
                 </div>
