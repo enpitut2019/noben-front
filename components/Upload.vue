@@ -26,7 +26,9 @@
 			</v-form>
       <div>
         <input type="file" @change="onFileChanged" multiple>
-        <button @click="onUpload">Upload</button>
+        <!-- <div v-if="images!==null"> -->
+        <button @click="onUpload" v-if="images.length!=0">Upload</button>
+      <!-- </div> -->
       </div>
       <div v-for="(image,index) in images">
         <h2>{{image.name}}</h2>
@@ -65,6 +67,7 @@ export default {
       }
     },
     onUpload() {
+      console.log(this.images)
       const formData = new FormData()
       formData.append('note[subject_name]', this.subjectName)
       for (  var i = 0;  i < this.images.length;  i++  ) {
