@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1><center>{{postImage.subject_name}}</center></h1><br>
+    <h1><center>{{postImage.subject_name}}</center></h1>
     <!--div class="image" v-for='page in postImage.pages' v-bind:key='page.id'>
       <v-img
         :src="page.image"
@@ -8,10 +8,19 @@
       <br>
     </div-->
 
+    <!--h2>このノートについているタグ</h2-->
+    <hr>
+    <center>
+    タグ：
+    <div class="tag" v-for='tag in postImage.tags'>
+      <button v-on:click="searchUrl(tag.name)">{{tag.name}}</button>
+    </div></center><br><br>
+
     <div class="pgft">
       <center>
       <button class="btn" v-on:click="beforePage">前のページ</button>
-      <b>{{nowPageNum + 1}} / {{maxPageNum}}</b>
+      <b v-if="maxPageNum != 0">{{nowPageNum + 1}} / {{maxPageNum}}</b>
+      <b v-else>{{nowPageNum}} / {{maxPageNum}}</b>
       <button class="btn" v-on:click="nextPage">次のページ</button>
       </center>
     </div>
@@ -27,16 +36,17 @@
     <div class="pgft">
       <center>
       <button class="btn" v-on:click="beforePage">前のページ</button>
-      <b>{{nowPageNum + 1}} / {{maxPageNum}}</b>
+      <b v-if="maxPageNum != 0">{{nowPageNum + 1}} / {{maxPageNum}}</b>
+      <b v-else>{{nowPageNum}} / {{maxPageNum}}</b>
       <button class="btn" v-on:click="nextPage">次のページ</button>
       </center>
     </div>
 
-    <h2>このノートについているタグ</h2>
+    <!--h2>このノートについているタグ</h2>
     <hr>
     <div class="tag" v-for='tag in postImage.tags'>
       <button v-on:click="searchUrl(tag.name)">{{tag.name}}</button>
-    </div><br><br>
+    </div><br--><br>
 
     <!-- コメントを一覧表示 -->
     <h2>コメント欄</h2>
@@ -123,8 +133,12 @@ export default {
           // alert(res.data.pages[0].image)
           this.postImage = res.data;
           this.display = true;
-          this.nowPage = this.postImage.pages[this.nowPageNum];
-          this.maxPageNum = this.postImage.pages.length;
+          //if (this.postImage.pages.length != 0) {
+            this.nowPage = this.postImage.pages[this.nowPageNum];
+            this.maxPageNum = this.postImage.pages.length;
+          /*} else {
+            this.nowPageNum = -1;
+          }*/
         })
         .catch( (e) =>{
           console.log(e);
@@ -161,8 +175,8 @@ export default {
     .btn {
         margin: 0 0 0 auto;
         margin-left: 3px;
-        background-color: white;
-        color: black;
+        background-color: gray;
+        color: white;
         /*width: 20%;*/
         /*margin: auto;*/
         /*position: absolute;*/
@@ -196,6 +210,7 @@ export default {
     .tag {
       display: inline-block;
       margin: 3px;
+      margin-top: 5px;
       background-color: white;
       color: black;
       border:none;
@@ -203,11 +218,6 @@ export default {
       box-shadow: none;
       padding: 2px 8px;
       position: center;
-    }
-
-    .pgft .btn {
-      color: white;
-      background-color: gray;
     }
 
     #name {
