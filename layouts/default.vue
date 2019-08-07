@@ -29,9 +29,11 @@
     </v-navigation-drawer> -->
 
     <v-app-bar fixed>
+      <!-- <img src="~/assets/logo_white.png" class="topButton" ontouchstart=""> -->
       <v-btn depressed @click="MoveForTop">
         NoBen
       </v-btn>
+      
 
       <v-spacer></v-spacer>
 
@@ -177,4 +179,21 @@ export default {
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.15);
     background-image: linear-gradient(#dad6d7 0%, #949191 100%);/*グラデーションを明るく*/
   }
+
+  /* img.topButton{
+    width: 30px;
+    height: 30px;
+  } */
+
+  /* img.topButton:hover{
+    opacity:0.5;
+    cursor: pointer;
+  } */
+  
+  /* twitter画像をクリックした瞬間 */
+  /* img.topButton:active{
+    position: relative;
+    top: 3px;
+  
+  } */
 </style>
