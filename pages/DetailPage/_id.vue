@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1><center>{{postImage.subject_name}}</center></h1>
+    <h1><center><button v-on:click="searchUrl(postImage.subject_name)">{{postImage.subject_name}}</button></center></h1>
     <!--div class="image" v-for='page in postImage.pages' v-bind:key='page.id'>
       <v-img
         :src="page.image"
@@ -63,9 +63,9 @@
 
     <!--  -->
     <div class="cmt">
-        <input id="name" v-model="name" type="text" name="name" placeholder="ユーザーネーム"><br>
+        <input id="name" v-model="user_name" type="text" name="user_name" placeholder="ユーザーネーム"><br>
         <input v-model="content" type="text" name="content" placeholder="ノートにコメントをしよう！"><button class="btn"
-         v-on:click="postComment">コメント</button>
+         v-on:click="postComment()">コメント</button>
     </div>
     <br>
     <br>
@@ -90,20 +90,22 @@ export default {
       nowPage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
       nowPageNum: 0,
       maxPageNum: 0,
-      name: "",
+      user_name: "",
     };
   },
   methods: {
     async postComment(){
       var comment = {
-          'user_name': this.name,
+          'user_name': this.user_name,
           'content': this.content
       };
-      await axios.post('https://noben.herokuapp.com/notes/' + this.$route.params.id + '/comments', comment).then(res => {
-          console.log(res.data.name);
+      if (comment['content'] != "") {
+        await axios.post('https://noben.herokuapp.com/notes/' + this.$route.params.id + '/comments', comment).then(res => {
+          console.log(res.data.user_name);
           console.log(res.data.content);
-      });
-      window.location.reload();
+        });
+        window.location.reload();
+      }
     },
     searchUrl(tag){
         //if(this.content != "" && this.content.indexOf(' ') ===  -1 && this.content.indexOf('　') === -1){
