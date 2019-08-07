@@ -81,12 +81,12 @@
       </v-navigation-drawer> -->
 
       <!-- フッター -->
-      <v-footer
+      <!-- <v-footer
         :fixed="fixed"
         app
         >
         <span>&copy; 2019/8/7</span>
-      </v-footer>
+      </v-footer> -->
   </v-app>
 </template>
 
