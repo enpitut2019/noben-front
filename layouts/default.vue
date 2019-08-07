@@ -1,13 +1,14 @@
 <template>
   <v-app dark>
-    <v-navigation-drawer
+
+    <!-- 一番左のリンクベタベタ貼ってるデバッグ用バー -->
+    <!-- <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
       fixed
       app
       >
-      <!-- 一番左のリンクベタベタ貼ってるデバッグ用バー -->
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
@@ -25,7 +26,7 @@
 
         </v-list-item>
       </v-list>
-    </v-navigation-drawer>
+    </v-navigation-drawer> -->
 
     <v-app-bar fixed>
       <v-btn depressed @click="MoveForTop">
