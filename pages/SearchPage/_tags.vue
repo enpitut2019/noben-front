@@ -2,6 +2,7 @@
     <v-container>
         <v-layout>
             <v-flex xs12>
+              <h1><center>検索結果：{{nowTag}}</center></h1>
                 <div v-if="display">
                     <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
                         <div class="oneCard" v-if="thumbnail.pages.length != 0" >
@@ -32,6 +33,7 @@ export default {
       postImage: 'https://haniwaman.com/wp-content/uploads/2018/01/loading-840x600.png',
       URL: "",
       display: false,
+      nowTag: "",
     };
   },
   methods: {
@@ -45,6 +47,7 @@ export default {
         .then((res) => {
           this.postImage = res.data;
           this.display = true;
+          this.nowTag = this.$route.params.tags;
         })
         .catch( (e) =>{
             console.log(e);
