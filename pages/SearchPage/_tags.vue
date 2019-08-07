@@ -3,6 +3,10 @@
         <v-layout>
             <v-flex xs12>
               <h1><center>検索結果：{{nowTag}}</center></h1>
+                <div v-if="noData">
+                  <br><br><br><br>
+                  <h2><center>{{nowTag}} のノートは見つかりませんでした</center></h2>
+                </div>
                 <div v-if="display">
                     <div class="note" v-for='thumbnail in postImage' v-bind:key='thumbnail.id'>
                         <div class="oneCard" v-if="thumbnail.pages.length != 0" >
@@ -34,6 +38,7 @@ export default {
       URL: "",
       display: false,
       nowTag: "",
+      noData: false,
     };
   },
   methods: {
@@ -48,6 +53,9 @@ export default {
           this.postImage = res.data;
           this.display = true;
           this.nowTag = this.$route.params.tags;
+          if(res.data.length === 0){
+            this.noData = true;
+          }
         })
         .catch( (e) =>{
             console.log(e);
