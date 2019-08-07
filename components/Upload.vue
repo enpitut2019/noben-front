@@ -7,13 +7,13 @@
 				<v-text-field
 					v-model = "subjectName"
 					label = "教科名"
-					placeholder = "線形代数"
+					placeholder = "教科名を入力（例：線形代数）"
 					required
 					></v-text-field>
 				<v-text-field
 					v-model = "tags"
 					label = "タグ"
-					placeholder = "3回目, 課題"
+					placeholder = "半角カンマ区切りでタグを入力（例：3回目, 課題, 解説求む）"
 					required
 					></v-text-field>
 				<!-- <v-file-input
